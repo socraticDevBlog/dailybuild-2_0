@@ -1,0 +1,64 @@
+.ui-timepicker-hours{
+  color: orange;
+}
+
+.ui-timepicker-hour-cell {
+  font-weight: 800;
+  font-size:large;
+}
+
+.ui-timepicker-minutes {
+  color: yellow;
+}
+
+#display-converted-beats {
+  color: pink;
+  background-color: black;
+  padding: 1em 1em 1em 1em;
+  font-size: x-large;
+  text-align: center;
+}
+
+#timepicker {
+  width: 40%;
+}
+#timepicker:hover{
+  color:cornflowerblue;
+  cursor: pointer;
+}
+
+#timetable {
+    color:hotpink;
+}
+
+.tg {
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: yellow;
+}
+.tg td {
+  border-color: rgb(48, 45, 45);
+  border-style: solid;
+  border-width: 2px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  overflow: hidden;
+  padding: 10px 5px;
+  padding-left: 3em;
+  word-break: normal;
+}
+.tg th {
+  border-color: rgb(48, 45, 45);
+  border-style: solid;
+  border-width: 2px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  overflow: hidden;
+  padding: 10px 5px;
+  word-break: normal;
+}
+.tg .tg-0lax {
+  text-align: left;
+  vertical-align: top;
+}

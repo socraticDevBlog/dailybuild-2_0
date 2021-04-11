@@ -1,0 +1,26 @@
+{
+  "name": "hashtag-dailybuild",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bootstrap.min.js",
+  "dependencies": {
+    "sergey": "0.0.13"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "sergey",
+    "dev": "sergey --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/socraticdev/hashtag-dailybuild.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/socraticdev/hashtag-dailybuild/issues"
+  },
+  "homepage": "https://gitlab.com/socraticdev/hashtag-dailybuild#readme"
+}
