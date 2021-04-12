@@ -8903,8 +8903,11 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
-#battlestations {
+.section-title {
   padding-top: 3em !important;
+}
+.section-title-text {
+  background-color: white;
 }
 
 body {

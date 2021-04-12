@@ -1,64 +1,33 @@
-.ui-timepicker-hours{
-  color: orange;
+/* Table */
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-.ui-timepicker-hour-cell {
-  font-weight: 800;
-  font-size:large;
+table {
+  width: 100%;
 }
 
-.ui-timepicker-minutes {
-  color: yellow;
+table tbody tr {
+  border-top: solid 1px #eae9e9;
 }
 
-#display-converted-beats {
-  color: pink;
-  background-color: black;
-  padding: 1em 1em 1em 1em;
-  font-size: x-large;
-  text-align: center;
+table tbody tr:first-child {
+  border-top: 0;
 }
 
-#timepicker {
-  width: 40%;
-}
-#timepicker:hover{
-  color:cornflowerblue;
-  cursor: pointer;
+table td {
+  padding: 0.75em 1.25em 0.75em 1.25em;
 }
 
-#timetable {
-    color:hotpink;
-}
-
-.tg {
-  border-collapse: collapse;
-  border-spacing: 0;
-  color: yellow;
-}
-.tg td {
-  border-color: rgb(48, 45, 45);
-  border-style: solid;
-  border-width: 2px;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  overflow: hidden;
-  padding: 10px 5px;
-  padding-left: 3em;
-  word-break: normal;
-}
-.tg th {
-  border-color: rgb(48, 45, 45);
-  border-style: solid;
-  border-width: 2px;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  font-weight: normal;
-  overflow: hidden;
-  padding: 10px 5px;
-  word-break: normal;
-}
-.tg .tg-0lax {
+table th {
   text-align: left;
-  vertical-align: top;
+  font-weight: 400;
+  padding: 0.75em 1.25em 0.75em 1.25em;
+}
+
+table thead {
+  background: #f5f5f5;
 }

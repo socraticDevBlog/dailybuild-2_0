@@ -2,11 +2,10 @@ function printTime(dateObj) {
   let hours = dateObj.getHours();
   let minutes = dateObj.getMinutes();
 
-  if (minutes > 10) {
-    return hours + "h" + minutes + "min";
-  } else {
-    return hours + "h0" + minutes + "min";
-  }
+  let printedHours = hours >= 10 ? hours : "0" + hours;
+  let printedMinutes = minutes >= 10 ? minutes : "0" +minutes;
+
+  return printedHours + ":" + printedMinutes;
 }
 
 function printDate(dateObj) {
@@ -16,7 +15,11 @@ function printDate(dateObj) {
   return `${d}-${m}-${y}`;
 }
 
-function getDate(dateObj, offset) {
+function getDate(luxonDateObj, offset) {
+  let dateObj = luxonDateObj.toJSDate();
+
+  offset = luxonDateObj.isInDST ? (offset + 1) : offset;
+
   let diff = offset * 60 + dateObj.getTimezoneOffset();
   return new Date(dateObj.getTime() + diff * 60 * 1000);
 }
@@ -43,45 +46,23 @@ const turkOffset = 3.0;
 const chiOffset = -6.0;
 const sfOffset = -8.0;
 
-const nytimeCell = document.getElementById("nytime");
-const nydateCell = document.getElementById("nydate");
-const utctimeCell = document.getElementById("utctime");
-const utcdateCell = document.getElementById("utcdate");
-const paristimeCell = document.getElementById("paristime");
-const parisdateCell = document.getElementById("parisdate");
-const tktimeCell = document.getElementById("tktime");
-const tkdateCell = document.getElementById("tkdate");
-const sftimeCell = document.getElementById("sftime");
-const sfdateCell = document.getElementById("sfdate");
-const chitimeCell = document.getElementById("chitime");
-const chidateCell = document.getElementById("chidate");
-const beatimeCell = document.getElementById("beattime");
-const beatdateCell = document.getElementById("beatdate");
+const nytimeCell = document.getElementById("ny-time");
+const paristimeCell = document.getElementById("paris-time");
+const chiTimeCell = document.getElementById("chicago-time");
+const sftimeCell = document.getElementById("pacific-time");
+const beatimeCell = document.getElementById("beat-time");
 
 function load() {
-  let today = new Date();
-  let ny = getDate(today, nyOffset);
-  let paris = getDate(today, parisOffset);
-  let sf = getDate(today, sfOffset);
-  let tk = getDate(today, turkOffset);
-  let chi = getDate(today, chiOffset);
-  let utc = getDate(today, 0);
+  let ny = getDate(luxon.DateTime.now().setZone('America/New_York'), nyOffset);
+  let paris = getDate(luxon.DateTime.now().setZone('Europe/Paris'), parisOffset);
+  let sf = getDate(luxon.DateTime.now().setZone('America/Los_Angeles'), sfOffset);
+  let chicago = getDate(luxon.DateTime.now().setZone('America/Chicago'), chiOffset);
 
-  // paris is utc+1
-  beatimeCell.innerText = getBeats(today);
-  beatdateCell.innerText = printDate(paris);
+  beatimeCell.innerText = getBeats(new Date());
   sftimeCell.innerText = printTime(sf);
-  sfdateCell.innerText = printDate(sf);
-  chitimeCell.innerText = printTime(chi);
-  chidateCell.innerText = printDate(chi);
   nytimeCell.innerText = printTime(ny);
-  nydateCell.innerText = printDate(ny);
   paristimeCell.innerText = printTime(paris);
-  parisdateCell.innerText = printDate(paris);
-  tktimeCell.innerText = printTime(tk);
-  tkdateCell.innerText = printDate(tk);
-  utctimeCell.innerText = printTime(utc);
-  utcdateCell.innerText = printDate(utc);
+  chiTimeCell.innerText = printTime(chicago);
 }
 
 load();
@@ -89,21 +70,3 @@ load();
 window.setInterval(function () {
   load();
 }, 5000);
-
-function printConvertHoursToBeats(strTime) {
-  let today = new Date();
-  let hour = strTime.substring(0,2);
-  let minute = strTime.substring(3,5);
-  today.setHours(hour, minute);
-  return getBeats(today);
-}
-
-$( document ).ready(function() {
-
-  $('#timepicker').timepicker({
-    onSelect: function(time, inst) {
-        console.log(typeof(time));
-        $('#display-converted-beats').html(printConvertHoursToBeats(time) + " beats");
-    }
-});
-});
