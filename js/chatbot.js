@@ -95,7 +95,12 @@ const robot = [
 
 $(function () {
   $inputTextbox = $("#chatbot-input");
+  $txtAnswerbox = $("#bot-answer");
 
+  $txtAnswerbox.hover(function (e)  {
+    $inputTextbox.focus();
+  });
+ 
   $inputTextbox.on("keypress", function (e) {
     if (e.which == KEY_ENTER) {
       let userText = $inputTextbox.val();

@@ -5,37 +5,38 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
-.bot-module {
-  border-radius: 16px;
-  border-style: groove;
-  border-color: #7cbb00;
-  padding-top: 3em;
-  padding-bottom: 3em;
-  background-color: #7cbb00;
-}
-
 #bot-img {
   width:96px;
   height: 96px;
 }
 
 #bot-answer {
-  color: #522d80;
-  padding-bottom: 3em;
+  color:purple;
+  background-color: white;
+  border-radius: 16px;
   font-size: x-large;
+  min-height: 150px;
+  padding-top: 0.5em;
+  padding-left: 0.5em;
+}
+#bot-answer:hover {
+  cursor: no-drop;
+}
+
+#chatbot {
+  padding-top: 1em;
+  padding-right: 2em;
 }
 
 #bot-answer-label {
-  color: #522d80;
+  color: orangered;
   padding-bottom: 3em;
+  padding-left: 1em;
   font-weight: 600;
 }
 
-.chatbot-row {
-  padding-top: 5em;
-}
-
 #chatbot-input {
+  padding-left: 1em;
   border-radius: 16px;
   border-left: 0.4em solid;
   border-left-color: #138496;
