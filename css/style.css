@@ -24,13 +24,12 @@
 }
 
 #chatbot {
-  padding-top: 1em;
-  padding-right: 2em;
+  padding-top: 2em;
+  padding-right: 1em;
 }
 
 #bot-answer-label {
   color: orangered;
-  padding-bottom: 3em;
   padding-left: 1em;
   font-weight: 600;
 }
@@ -40,6 +39,7 @@
   border-radius: 16px;
   border-left: 0.4em solid;
   border-left-color: #138496;
+  width: 100%;
 }
 
 .readable-white {
