@@ -229,6 +229,11 @@
     $(".nav-link").removeClass("active");
     $("#project-link").addClass("active");
     $("#about-link").attr("href", "dpro-comic.html#aboutSection");
+  }else if ($("#dailybuild-comic").length === 1) {
+    console.log('no??');
+    $(".nav-link").removeClass("active");
+    $("#project-link").addClass("active");
+    $("#about-link").attr("href", "dailybuild-comic.html#aboutSection");
   }
 
   // remove highlighted menu item when 404 page is displayed
