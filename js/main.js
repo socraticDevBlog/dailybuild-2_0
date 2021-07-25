@@ -224,7 +224,7 @@
     $(".nav-link").removeClass("active");
     $("#blog-not-link").addClass("active");
     $("#about-link").attr("href", "tekdude.html#aboutSection");
-  } else if ($("#dpro-comic").length === 1) {
+  } else if ($(".project").length === 1) {
     console.log('no??');
     $(".nav-link").removeClass("active");
     $("#project-link").addClass("active");
