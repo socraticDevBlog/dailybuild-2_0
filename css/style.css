@@ -42,6 +42,12 @@
   width: 100%;
 }
 
+#radio {
+  position: absolute;
+  bottom: 12em;
+  right: 0;
+}
+
 .readable-white {
   background: -o-linear-gradient( left, rgba(76, 76, 76, 1) 0%, rgba(89, 89, 89, 0.91) 12%, rgba(102, 102, 102, 0.81) 25%, rgba(71, 71, 71, 0.73) 36%, rgba(0, 0, 0, 0.61) 51%, rgba(17, 17, 17, 0.48) 69%, rgba(44, 44, 44, 0.44) 74%, rgba(43, 43, 43, 0.42) 76%, rgba(28, 28, 28, 0.31) 91%, rgba(19, 19, 19, 0.24) 100%);
   background: -ms-linear-gradient( left, rgba(76, 76, 76, 1) 0%, rgba(89, 89, 89, 0.91) 12%, rgba(102, 102, 102, 0.81) 25%, rgba(71, 71, 71, 0.73) 36%, rgba(0, 0, 0, 0.61) 51%, rgba(17, 17, 17, 0.48) 69%, rgba(44, 44, 44, 0.44) 74%, rgba(43, 43, 43, 0.42) 76%, rgba(28, 28, 28, 0.31) 91%, rgba(19, 19, 19, 0.24) 100%);
