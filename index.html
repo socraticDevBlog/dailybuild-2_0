@@ -194,6 +194,13 @@
 
     <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#f4b214"/></svg></div>
 
+    <div id="radio" style="z-index: 1;"></div>
+
     <sergey-import src="scripts" />
+    <script src="https://unpkg.com/webamp@1.4.2/built/webamp.bundle.min.js"></script>
+    <script>
+      const Webamp = window.Webamp;
+      new Webamp({zIndex:999,initialTracks:[{url:"https://radio.neet.space/stream.mp3",duration:0.0}]}).renderWhenReady(document.getElementById('radio'));
+    </script>
   </body>
 </html>
