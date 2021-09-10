@@ -26,4 +26,10 @@ jobs:
 
       - name: Deploy on the remote server
         # -q is required to remove IP leakage when warning about adding the SSH host key that is already kwnown
-        run: ssh -q -i ~/.ssh/key "${{ secrets.SSH_DEPLOY_DESTINATION }}" 'cd ~/website/ && git pull --force --no-rebase && npm install && npm run start && rm -r /var/www/html/*; cp -r ~/website/public/* /var/www/html/'
+        run: ssh -q -i ~/.ssh/key "${{ secrets.SSH }}"
+                                       'cd ~/website/ &&
+                                        git pull --force --no-rebase &&
+                                        npm install &&
+                                        npm run start &&
+                                        rm -r /var/www/html/*;
+                                        cp -r public/* /var/www/html/'
