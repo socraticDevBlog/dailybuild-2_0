@@ -9,8 +9,8 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "sergey",
-    "dev": "sergey --watch"
+    "start": "./dailybuild-comics/build_dailybuild_comics.sh && sergey",
+    "dev": "./dailybuild-comics/build_dailybuild_comics.sh && sergey --watch"
   },
   "repository": {
     "type": "git",
