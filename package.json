@@ -2,15 +2,16 @@
   "name": "hashtag-dailybuild",
   "version": "1.0.0",
   "description": "",
-  "main": "bootstrap.min.js",
+  "main": "build-comics.js",
   "dependencies": {
     "sergey": "0.0.13"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "sergey",
-    "dev": "sergey --watch"
+    "start": "npm run comic && sergey",
+    "comic" : "node build-comics.js",
+    "dev": "npm run comic && sergey --watch"
   },
   "repository": {
     "type": "git",
