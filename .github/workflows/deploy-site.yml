@@ -44,10 +44,12 @@ jobs:
           echo "${{ secrets.SSH_DEPLOY_HOST_KEY }}" > ~/.ssh/known_hosts
       
       - name: Add SSH key
+        # umask 177 is equivalent to chmod 600 permissions
         run: |
+          umask 177
           touch ~/.ssh/key
-          chmod 600 ~/.ssh/key
           echo "${{ secrets.SSH_DEPLOY_RUNNER_KEY }}" > ~/.ssh/key
+          umask 022
 
       - name: Get built site
         uses: actions/download-artifact@v2
