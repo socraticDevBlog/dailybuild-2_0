@@ -6,8 +6,11 @@ on:
     branches:
       - master
 
+env:
+  BUILD_ARTIFACT_NAME: built-site
+
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -21,6 +24,18 @@ jobs:
       - name: Build site locally
         run: npm run start
 
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.BUILD_ARTIFACT_NAME }}
+          path: ${{ github.workspace }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    env:
+      WORKING_DIR: work
+    steps:
       - name: Create SSH config folder
         run: mkdir -pv ~/.ssh
 
@@ -34,6 +49,12 @@ jobs:
           chmod 600 ~/.ssh/key
           echo "${{ secrets.SSH_DEPLOY_RUNNER_KEY }}" > ~/.ssh/key
 
+      - name: Get built site
+        uses: actions/download-artifact@v2
+        with:
+          name: ${{ env.BUILD_ARTIFACT_NAME }}
+          path: ${{ env.WORKING_DIR }}
+
       - name: Clear directory on remote server
         # -q is required to remove IP leakage when warning about adding the SSH host key that is already known
         # We are using a temporary directory (HOME) in case something goes belly up and to limit downtime. We wouldn't want there to be no website, would we?
@@ -42,7 +63,7 @@ jobs:
                                        'rm -rf ~/* ~/.*; true'
 
       - name: Send to remote server
-        run: scp -q -i ~/.ssh/key -r $GITHUB_WORKSPACE/public/* "${{ secrets.SSH_DEPLOY_DESTINATION }}":~/
+        run: scp -q -i ~/.ssh/key -r $WORKING_DIR/public/* "${{ secrets.SSH_DEPLOY_DESTINATION }}":~/
 
       - name: Deploy on the remote server
         run: ssh -q -i ~/.ssh/key "${{ secrets.SSH_DEPLOY_DESTINATION }}"
