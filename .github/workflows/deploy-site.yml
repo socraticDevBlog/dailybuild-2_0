@@ -35,10 +35,10 @@ jobs:
           echo "${{ secrets.SSH_DEPLOY_RUNNER_KEY }}" > ~/.ssh/key
 
       - name: Clear directory on remote server
-        # -q is required to remove IP leakage when warning about adding the SSH host key that is already kwnown
+        # -q is required to remove IP leakage when warning about adding the SSH host key that is already known
         # We are using a temporary directory (HOME) in case something goes belly up and to limit downtime. We wouldn't want there to be no website, would we?
         # This command is known to fail because it tried to delete the current directory . and the previous directory .. so we force it with true (remote)
-        run: ssh -i ~/.ssh/key "${{ secrets.SSH_DEPLOY_DESTINATION }}"
+        run: ssh -q -i ~/.ssh/key "${{ secrets.SSH_DEPLOY_DESTINATION }}"
                                        'rm -rf ~/* ~/.*; true'
 
       - name: Send to remote server
