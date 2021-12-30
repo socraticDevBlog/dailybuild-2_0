@@ -28,7 +28,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{ env.BUILD_ARTIFACT_NAME }}
-          path: ${{ github.workspace }}
+          path: ${{ github.workspace }}/public/
 
   deploy:
     runs-on: ubuntu-latest
@@ -63,7 +63,7 @@ jobs:
                                        'rm -rf ~/* ~/.*; true'
 
       - name: Send to remote server
-        run: scp -q -i ~/.ssh/key -r $WORKING_DIR/public/* "${{ secrets.SSH_DEPLOY_DESTINATION }}":~/
+        run: scp -q -i ~/.ssh/key -r $WORKING_DIR/* "${{ secrets.SSH_DEPLOY_DESTINATION }}":~/
 
       - name: Deploy on the remote server
         run: ssh -q -i ~/.ssh/key "${{ secrets.SSH_DEPLOY_DESTINATION }}"
