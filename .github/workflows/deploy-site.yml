@@ -6,8 +6,11 @@ on:
     branches:
       - master
 
+env:
+  BUILD_ARTIFACT_NAME: built-site
+
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -21,6 +24,18 @@ jobs:
       - name: Build site locally
         run: npm run start
 
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.BUILD_ARTIFACT_NAME }}
+          path: ${{ github.workspace }}/public/
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    env:
+      WORKING_DIR: work
+    steps:
       - name: Create SSH config folder
         run: mkdir -pv ~/.ssh
 
@@ -29,20 +44,28 @@ jobs:
           echo "${{ secrets.SSH_DEPLOY_HOST_KEY }}" > ~/.ssh/known_hosts
       
       - name: Add SSH key
+        # umask 177 is equivalent to chmod 600 permissions
         run: |
+          umask 177
           touch ~/.ssh/key
-          chmod 600 ~/.ssh/key
           echo "${{ secrets.SSH_DEPLOY_RUNNER_KEY }}" > ~/.ssh/key
+          umask 022
+
+      - name: Get built site
+        uses: actions/download-artifact@v2
+        with:
+          name: ${{ env.BUILD_ARTIFACT_NAME }}
+          path: ${{ env.WORKING_DIR }}
 
       - name: Clear directory on remote server
-        # -q is required to remove IP leakage when warning about adding the SSH host key that is already kwnown
+        # -q is required to remove IP leakage when warning about adding the SSH host key that is already known
         # We are using a temporary directory (HOME) in case something goes belly up and to limit downtime. We wouldn't want there to be no website, would we?
         # This command is known to fail because it tried to delete the current directory . and the previous directory .. so we force it with true (remote)
-        run: ssh -i ~/.ssh/key "${{ secrets.SSH_DEPLOY_DESTINATION }}"
+        run: ssh -q -i ~/.ssh/key "${{ secrets.SSH_DEPLOY_DESTINATION }}"
                                        'rm -rf ~/* ~/.*; true'
 
       - name: Send to remote server
-        run: scp -q -i ~/.ssh/key -r $GITHUB_WORKSPACE/public/* "${{ secrets.SSH_DEPLOY_DESTINATION }}":~/
+        run: scp -q -i ~/.ssh/key -r $WORKING_DIR/* "${{ secrets.SSH_DEPLOY_DESTINATION }}":~/
 
       - name: Deploy on the remote server
         run: ssh -q -i ~/.ssh/key "${{ secrets.SSH_DEPLOY_DESTINATION }}"
