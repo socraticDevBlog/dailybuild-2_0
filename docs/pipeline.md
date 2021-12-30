@@ -45,3 +45,17 @@ The `authorized_keys` file itself isn't special in any way: it is simply a file 
 While the destination here is only a single line, the `HOST_KEY` and `RUNNER_KEY` can be multi-line. (multiple key types, multi-line key)
 
 [1]: https://man.netbsd.org/sshd.8#SSH_KNOWN_HOSTS%20FILE%20FORMAT
+
+## Process
+The workflow is split into two jobs, each job starts in a clean environment.
+
+1. Building the site on a GitHub runner
+2. Deploy built site on our server
+
+### Deploying via SSH
+The second workflow setups up SSH by:
+1. Creating a `.ssh` config folder
+2. Adding the server's public key into the `.ssh/known_hosts` to avoid a MiTM attack
+3. Add the private key in `~/.ssh/key`
+
+Once that is done, we can run ssh or scp with `-i ~/.ssh/key` to use that specific key, and `-q` to avoid leaking information.
