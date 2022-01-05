@@ -48,6 +48,13 @@
   right: 0;
 }
 
+/* dont display on Smartphones ----------- */
+@media only screen and (max-width: 600px) {
+  .not_on_mobile {
+    display: none;
+  }
+}
+
 .readable-white {
   background: -o-linear-gradient(
     left,
