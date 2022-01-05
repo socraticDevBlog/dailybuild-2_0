@@ -48,7 +48,7 @@
   right: 0;
 }
 
-/* dont display radio on Smartphones ----------- */
+/* dont display on Smartphones ----------- */
 @media only screen and (max-width: 600px) {
   .not_on_mobile {
     display: none;
