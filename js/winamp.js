@@ -1,7 +1,7 @@
 // display radio only if screen is wide enough (i.e. not on mobile device)
-const doDisplayRadioPlayer = $("#radio").css("display") != "none";
+const doLoadRadioPlayer = $(".not_on_mobile").css("display") != "none";
 
-if (doDisplayRadioPlayer) {
+if (doLoadRadioPlayer) {
   const webAmp = window.Webamp;
   new webAmp({
     zIndex: 999,

@@ -50,7 +50,7 @@
 
 /* dont display radio on Smartphones ----------- */
 @media only screen and (max-width: 600px) {
-  #radio {
+  .not_on_mobile {
     display: none;
   }
 }
