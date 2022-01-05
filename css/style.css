@@ -48,6 +48,13 @@
   right: 0;
 }
 
+/* dont display radio on Smartphones ----------- */
+@media only screen and (max-width: 600px) {
+  #radio {
+    display: none;
+  }
+}
+
 .readable-white {
   background: -o-linear-gradient(
     left,
