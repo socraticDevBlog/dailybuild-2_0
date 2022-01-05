@@ -1,6 +1,6 @@
-# temporary 
+# HOW TO CONTRIBUTE 
 
-any help is welcome. 
+help from any regular member of #dailybuild is welcomed
 
 look up the 'Issues' first
 
