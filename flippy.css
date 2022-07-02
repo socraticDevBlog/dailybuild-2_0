@@ -1,0 +1,44 @@
+body {
+	background-color: #000000;
+	color: #e2e2e2;
+	font-family: courier;
+	font-size: 95%;
+	max-width: 70%;
+	text-align: left;
+	width: 700px;
+	margin: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 5px;
+}
+
+a:link {
+	color: #7575ff;
+}
+
+a:visited {
+	color: #9849c6;
+}
+
+a:hover {
+	color: #9393ff;
+}
+
+a:active {
+	color: #5b5bff;
+}
+
+.entry {
+	margin-top: 5px;
+	color: #e2e2e2;
+	background-color: #000000;
+	border-top: 1px, #e2e2e2;
+	border-top-style: dashed;
+	border-width: 1px;
+}
