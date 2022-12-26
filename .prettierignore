@@ -6,3 +6,5 @@ animate.css
 *.svg
 *ionicons*
 *.scss
+
+!style.scss
