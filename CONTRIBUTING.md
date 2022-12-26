@@ -10,6 +10,17 @@ Fork the repo and open a Merge Request.
 
 Buzz me if nothing happens within 2 days :)
 
+## keep code clean
+
+lint your code using [prettier](https://prettier.io/)
+
+```bash
+npx prettier --write .
+```
+
+\* it will report many errors relative to html tags. We know!  don't worry
+about that 😇
+
 # GitHub Action (deploy to server)
 
 File: `.github/workflows/deploy-site.yml`
