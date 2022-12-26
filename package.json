@@ -6,7 +6,6 @@
   "dependencies": {
     "sergey": "0.0.13"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "sergey",
