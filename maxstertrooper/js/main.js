@@ -10,35 +10,35 @@ gameRunner.menu(gameRunner);
 document.onkeydown = checkKey;
 
 function checkKey(e) {
-    var event = window.event ? window.event : e;
+  var event = window.event ? window.event : e;
 
-    switch(event.code) {
-        case "ArrowRight":
-            gameRunner.moveCannonRight(gameRunner, canvas.width);
-            break;
-        
-        case "ArrowLeft":
-            gameRunner.moveCannonLeft(gameRunner, canvas.width);
-            break;
+  switch (event.code) {
+    case "ArrowRight":
+      gameRunner.moveCannonRight(gameRunner, canvas.width);
+      break;
 
-        case "ArrowUp":
-            gameRunner.fire(gameRunner);
-            break;
+    case "ArrowLeft":
+      gameRunner.moveCannonLeft(gameRunner, canvas.width);
+      break;
 
-        case "KeyS":
-            gameRunner.start(gameRunner);
-            break;
+    case "ArrowUp":
+      gameRunner.fire(gameRunner);
+      break;
 
-        case "KeyP":
-            gameRunner.pause(gameRunner);
-            break;
+    case "KeyS":
+      gameRunner.start(gameRunner);
+      break;
 
-        case "KeyR":
-            window.location.reload();
-            break;
+    case "KeyP":
+      gameRunner.pause(gameRunner);
+      break;
 
-        case "KeyM":
-            gameRunner.callMenuDisplay(gameRunner);
-            break;
-    }
+    case "KeyR":
+      window.location.reload();
+      break;
+
+    case "KeyM":
+      gameRunner.callMenuDisplay(gameRunner);
+      break;
+  }
 }

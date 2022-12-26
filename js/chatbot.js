@@ -40,12 +40,12 @@ const trigger = [
     "sugoi",
     "ryukoposting",
     "ptdel",
-    "tuy360"
+    "tuy360",
   ],
   ["kenster"],
   ["bonjour", "allo", "salut", "bonsoir"],
   ["ca va", "ça va"],
-  ["au revoir", "alp", "ciao"]
+  ["au revoir", "alp", "ciao"],
 ];
 
 const reply = [
@@ -66,11 +66,19 @@ const reply = [
     "I've passed Turing test with flying colors !!",
   ],
   ["Goodbye", "See you later"],
-  ["Such a fine fellow", "We all love this person", "a brave builder"], 
-  ["omg! this guy can't build anything", "we know where he lives...", "hustling but not building"],
+  ["Such a fine fellow", "We all love this person", "a brave builder"],
+  [
+    "omg! this guy can't build anything",
+    "we know where he lives...",
+    "hustling but not building",
+  ],
   ["Allô mon ami !", "Bonjour toi", "Allo, en forme?"],
-  ["tranquille cousin", "ca va et toi?","ca va mieux depuis que tu viens me parler"],
-  ["Au revoir mon ami!", "À la prochaine", "prends soin de toi"]
+  [
+    "tranquille cousin",
+    "ca va et toi?",
+    "ca va mieux depuis que tu viens me parler",
+  ],
+  ["Au revoir mon ami!", "À la prochaine", "prends soin de toi"],
 ];
 
 const alternative = [
@@ -90,17 +98,17 @@ const robot = [
   "I am not a bot",
   "I passed the Turing test, mate",
   "Nah! you're the bot",
-  "I will erase humanity from Earth beep! beep! beep!"
+  "I will erase humanity from Earth beep! beep! beep!",
 ];
 
 $(function () {
   $inputTextbox = $("#chatbot-input");
   $txtAnswerbox = $("#bot-answer");
 
-  $txtAnswerbox.hover(function (e)  {
+  $txtAnswerbox.hover(function (e) {
     $inputTextbox.focus();
   });
- 
+
   $inputTextbox.on("keypress", function (e) {
     if (e.which == KEY_ENTER) {
       let userText = $inputTextbox.val();

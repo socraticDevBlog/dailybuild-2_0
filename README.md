@@ -1,8 +1,8 @@
-
 ![https://img.shields.io/badge/good%20cause-we%20rock!-orange](https://img.shields.io/badge/good%20cause-we%20rock!-orange) ![https://img.shields.io/github/stars/socraticDevBlog/dailybuild-2_0?style=social](https://img.shields.io/github/stars/socraticDevBlog/dailybuild-2_0?style=social)
 ![https://img.shields.io/github/languages/code-size/socraticDevBlog/dailybuild-2_0](https://img.shields.io/github/languages/code-size/socraticDevBlog/dailybuild-2_0)
 ![https://img.shields.io/tokei/lines/github/socraticDevBlog/dailybuild-2_0](https://img.shields.io/tokei/lines/github/socraticDevBlog/dailybuild-2_0)
 ![https://img.shields.io/github/languages/top/socraticDevBlog/dailybuild-2_0](https://img.shields.io/github/languages/top/socraticDevBlog/dailybuild-2_0)
+
 # #dailybuild online community's homepage
 
 This codebase is [#dailybuild community](https://dailybuild.org)'s website.
@@ -25,7 +25,6 @@ Our community is all about building stuff and sharing.
 - [@vezquex](https://github.com/vezquex)
 - [@Soundtoxin](https://github.com/Soundtoxin)
 - [@parmeet1402](https://github.com/parmeet1402)
-
 
 ## Run Locally
 
@@ -68,7 +67,6 @@ Please adhere to this project's `code of conduct`.
 **Client:** [node.JS](https://nodejs.org/en/), [Sergey](https://sergey.cool/), [html5 template](https://html5up.net/), vanilla Javascript, CSS + [bootstrap](https://getbootstrap.com)
 
 **Server:** [nginx](https://www.nginx.com/) web server running on our own VPS (thanks @bloom!)
-
 
 ## Support
 

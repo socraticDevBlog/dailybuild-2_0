@@ -18,7 +18,7 @@ function printDate(dateObj) {
 function getDate(luxonDateObj, offset) {
   let dateObj = luxonDateObj.toJSDate();
 
-  offset = luxonDateObj.isInDST ? (offset + 1) : offset;
+  offset = luxonDateObj.isInDST ? offset + 1 : offset;
 
   let diff = offset * 60 + dateObj.getTimezoneOffset();
   return new Date(dateObj.getTime() + diff * 60 * 1000);
@@ -57,13 +57,31 @@ const bulgariaTimeCell = document.getElementById("bulgaria-time");
 const turkeyTimeCell = document.getElementById("turkey-time");
 
 function load() {
-  let ny = getDate(luxon.DateTime.now().setZone('America/New_York'), nyOffset);
-  let paris = getDate(luxon.DateTime.now().setZone('Europe/Paris'), parisOffset);
-  let sf = getDate(luxon.DateTime.now().setZone('America/Los_Angeles'), sfOffset);
-  let chicago = getDate(luxon.DateTime.now().setZone('America/Chicago'), chiOffset);
-  let denver = getDate(luxon.DateTime.now().setZone('America/Denver'), denverOffset);
-  let bulgaria = getDate(luxon.DateTime.now().setZone('Europe/Athens'), bulgOffset);
-  let turkey = getDate(luxon.DateTime.now().setZone('Europe/Istanbul'), turkOffset);
+  let ny = getDate(luxon.DateTime.now().setZone("America/New_York"), nyOffset);
+  let paris = getDate(
+    luxon.DateTime.now().setZone("Europe/Paris"),
+    parisOffset
+  );
+  let sf = getDate(
+    luxon.DateTime.now().setZone("America/Los_Angeles"),
+    sfOffset
+  );
+  let chicago = getDate(
+    luxon.DateTime.now().setZone("America/Chicago"),
+    chiOffset
+  );
+  let denver = getDate(
+    luxon.DateTime.now().setZone("America/Denver"),
+    denverOffset
+  );
+  let bulgaria = getDate(
+    luxon.DateTime.now().setZone("Europe/Athens"),
+    bulgOffset
+  );
+  let turkey = getDate(
+    luxon.DateTime.now().setZone("Europe/Istanbul"),
+    turkOffset
+  );
 
   beatimeCell.innerText = getBeats(new Date());
   sftimeCell.innerText = printTime(sf);

@@ -6,14 +6,14 @@
     closeEffect: "none",
   });
 
-  $('[data-fancybox]').fancybox({
-    afterLoad : function( instance, slide ) {
-        if ( slide.type === 'image' ) {
-            slide.width  = slide.width  * 2;
-            slide.height = slide.height * 2;
-        }
-    }
-});
+  $("[data-fancybox]").fancybox({
+    afterLoad: function (instance, slide) {
+      if (slide.type === "image") {
+        slide.width = slide.width * 2;
+        slide.height = slide.height * 2;
+      }
+    },
+  });
 
   // bootstrap dropdown hover
 
@@ -225,12 +225,12 @@
     $("#blog-not-link").addClass("active");
     $("#about-link").attr("href", "tekdude.html#aboutSection");
   } else if ($(".project").length === 1) {
-    console.log('no??');
+    console.log("no??");
     $(".nav-link").removeClass("active");
     $("#project-link").addClass("active");
     $("#about-link").attr("href", "dpro-comic.html#aboutSection");
-  }else if ($("#dailybuild-comic").length === 1) {
-    console.log('no??');
+  } else if ($("#dailybuild-comic").length === 1) {
+    console.log("no??");
     $(".nav-link").removeClass("active");
     $("#project-link").addClass("active");
     $("#about-link").attr("href", "dailybuild-comic.html#aboutSection");
