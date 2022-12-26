@@ -2,6 +2,7 @@
 ![https://img.shields.io/github/languages/code-size/socraticDevBlog/dailybuild-2_0](https://img.shields.io/github/languages/code-size/socraticDevBlog/dailybuild-2_0)
 ![https://img.shields.io/tokei/lines/github/socraticDevBlog/dailybuild-2_0](https://img.shields.io/tokei/lines/github/socraticDevBlog/dailybuild-2_0)
 ![https://img.shields.io/github/languages/top/socraticDevBlog/dailybuild-2_0](https://img.shields.io/github/languages/top/socraticDevBlog/dailybuild-2_0)
+![https://img.shields.io/github/commit-activity/m/socraticDevBlog/dailybuild-2_0](https://img.shields.io/github/commit-activity/m/socraticDevBlog/dailybuild-2_0)
 
 # #dailybuild online community's homepage
 
