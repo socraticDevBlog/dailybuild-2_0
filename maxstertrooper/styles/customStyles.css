@@ -1,39 +1,39 @@
 /* custom styles : socDev */
 
-.customHeader{
-    background-color: #91967F;
-    height: 100px;
-    width: 100%;
-    position: absolute;
-    top:0;
-    left:0;
-    text-align: center;
-    overflow: hidden;
+.customHeader {
+  background-color: #91967f;
+  height: 100px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+  overflow: hidden;
 }
 
-.customMain{
-    position: absolute;
-    left:0;
-    width: 100%;
-    top:100px;
-    overflow: auto;
+.customMain {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 100px;
+  overflow: auto;
 }
 
-.customCanvas{
-    background-color:black;
-    width: 100%;
+.customCanvas {
+  background-color: black;
+  width: 100%;
 
-    /*   100vh == screen total height ; 160px == header.height + footer.height */
-    height: calc(100vh - 160px);
+  /*   100vh == screen total height ; 160px == header.height + footer.height */
+  height: calc(100vh - 160px);
 }
 
-.customFooter{
-    background-color: #91967F;
-    left: 0;
-    bottom: 0;
-    height: 60px;
-    width:100%;
-    position: fixed;
-    text-align: center;
-    overflow: hidden;
+.customFooter {
+  background-color: #91967f;
+  left: 0;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+  position: fixed;
+  text-align: center;
+  overflow: hidden;
 }

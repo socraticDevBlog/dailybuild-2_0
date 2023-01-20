@@ -1,0 +1,12 @@
+/public/*
+
+*jquery*
+*bootstrap*
+animate.css
+*carousel*
+*min*
+*.svg
+*ionicons*
+*.scss
+
+!style.scss

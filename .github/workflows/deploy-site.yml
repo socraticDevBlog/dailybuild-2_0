@@ -42,7 +42,7 @@ jobs:
       - name: Add Known Hosts
         run: |
           echo "${{ secrets.SSH_DEPLOY_HOST_KEY }}" > ~/.ssh/known_hosts
-      
+
       - name: Add SSH key
         # umask 177 is equivalent to chmod 600 permissions
         run: |
@@ -62,12 +62,12 @@ jobs:
         # We are using a temporary directory (HOME) in case something goes belly up and to limit downtime. We wouldn't want there to be no website, would we?
         # This command is known to fail because it tried to delete the current directory . and the previous directory .. so we force it with true (remote)
         run: ssh -q -i ~/.ssh/key "${{ secrets.SSH_DEPLOY_DESTINATION }}"
-                                       'rm -rf ~/* ~/.*; true'
+          'rm -rf ~/* ~/.*; true'
 
       - name: Send to remote server
         run: scp -q -i ~/.ssh/key -r $WORKING_DIR/* "${{ secrets.SSH_DEPLOY_DESTINATION }}":~/
 
       - name: Deploy on the remote server
         run: ssh -q -i ~/.ssh/key "${{ secrets.SSH_DEPLOY_DESTINATION }}"
-                                       'rm -rf /srv/www/dailybuild/* &&
-                                        mv ~/* /srv/www/dailybuild'
+          'rm -rf /srv/www/dailybuild/* &&
+          mv ~/* /srv/www/dailybuild'
