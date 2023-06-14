@@ -2,6 +2,10 @@ from typing import Union
 
 from fastapi import FastAPI
 
+import logging
+
+logging.basicConfig(format="%(process)d-%(levelname)s-%(message)s", level=logging.debug)
+
 app = FastAPI()
 
 
