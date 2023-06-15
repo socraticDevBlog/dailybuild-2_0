@@ -44,7 +44,6 @@ curl localhost:8000
 
 **Server:** Python, FastApi
 
-
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
@@ -62,7 +61,14 @@ Please adhere to this project's `code of conduct`.
 If you have any feedback, please reach out to us at IRC Rizon network:
 #dailybuild
 
--------------
+## run unit tests locally
+
+1. make sure you have installed all dependencies running `pip install -r requirements.txt`
+2. run command: `pytest`
+3. expect some green in your terminal; all test should pass
+
+---
+
 everything below this line is templated stuff
 
 ## API Reference (tbd)
@@ -90,8 +96,6 @@ everything below this line is templated stuff
 #### add(num1, num2)
 
 Takes two numbers and returns the sum.
-
-
 
 ## FAQ
 

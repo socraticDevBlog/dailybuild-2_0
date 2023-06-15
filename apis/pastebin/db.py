@@ -9,10 +9,29 @@ logging.basicConfig(format="%(process)d-%(levelname)s-%(message)s", level=loggin
 
 
 class Paste:
+    """
+
+    Paste
+
+    a Paste is the model used to capture all relevant informations about
+    stuff being posted to the Pastebin
+
+    id: six(6) first characters of the Pasted content hashed with MD5
+
+    paste: the content being saved to the Pastebin
+
+    badge(optionnal): some kind of user submitted identifier used to regroup
+    pastes together. in order to avoid a badge getting usurped by another user,
+    the value is hashed with same function as the 'id' field
+
+    insert_timestamp: Unix timestamp
+
+    """
+
     def __init__(self, paste, badge: str = ""):
         self.id = self._hash(paste)
         self.paste = paste
-        self.badge = badge
+        self.badge = self._hash(badge)
         self.insert_timestamp = time.mktime(datetime.datetime.now().timetuple())
 
     def _hash(self, val):
@@ -23,7 +42,18 @@ class Paste:
 
 
 class DB:
-    def __init__(self, db_path: str = "default.db") -> None:
+    """
+
+    DB
+
+    Data Access Layer:
+
+    - create Database and tables
+    - execute SQL requests to database
+
+    """
+
+    def __init__(self, db_path: str = "pastebin.db") -> None:
         self._database = db_path
         self._conn = self._create_connection(db_path)
         self._create_pastebin_table()
@@ -36,7 +66,6 @@ class DB:
         sql = """ INSERT INTO pastebin(id,paste,insert_timestamp,badge)
                     VALUES(?,?,?,?) """
         try:
-            self._conn.cursor()
             self._conn.cursor().execute(
                 sql, (paste.id, paste.paste, paste.insert_timestamp, paste.badge)
             )
@@ -63,7 +92,6 @@ class DB:
             logging.error("Error creating sqlite3 pastebin table", exc_info=True)
 
     def _create_connection(self, db_file) -> Connection:
-        """returns a database connection to a SQLite database"""
         conn = None
         try:
             conn = sqlite3.connect(db_file)
@@ -78,6 +106,6 @@ class DB:
 #
 # if __name__ == "__main__":
 #     db = DB(r"pastebin.db")
-#     p = Paste(paste="zoom zoom", badge="mon ami")
+#     p = Paste(paste="dadabababa", badge="mon ami")
 #     r = db.insert_paste(paste=p)
 #     print(r)
