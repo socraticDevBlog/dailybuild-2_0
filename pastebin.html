@@ -1,0 +1,89 @@
+<sergey-import src="header">
+  <title>dailybuild pastebin;#dailybuild</title>
+</sergey-import>
+<div class="project row slider-text align-items-center justify-content-center" style="padding-top: 80px;"></div>
+
+<h1 style="color: orange;">poor man cloud-native pastebin</h1>
+<div style="margin-left: 10em">
+        <p>You can either upload some text pasted to the textbox area or a file</p>
+    <textarea id="textInput" placeholder="Paste text here (keep empty if you woona upload a file)"></textarea>
+    <button onclick="uploadData()">Upload Data to Pastebin</button>
+    <p style="margin-top: 5em">
+    ... or upload a text file (kode?)    
+    <input type="file" id="fileInput" />
+
+    </p>
+
+    <p>
+    <div id="responseContainer"></div>
+    </p>
+</div>
+
+    <script>
+      async function uploadData() {
+        const textInput = document.getElementById("textInput");
+        const fileInput = document.getElementById("fileInput");
+        const textData = textInput.value;
+        const file = fileInput.files[0];
+        const BaseURL = "https://paste.socratic.dev/paste";
+
+        let content;
+
+        if (textData) {
+          content = textData;
+        } else if (file) {
+          const reader = new FileReader();
+          content = await new Promise((resolve) => {
+            reader.onload = function (e) {
+              resolve(e.target.result);
+            };
+            reader.readAsText(file);
+          });
+        } else {
+          alert("Please enter text or select a file.");
+          return;
+        }
+
+        // Create a JSON object with "content" as the key
+        const data = {
+          content: content,
+        };
+
+        // Convert the JSON object to a string
+        const jsonData = JSON.stringify(data);
+
+        // Send the data to the API using the fetch API
+        try {
+          const response = await fetch(BaseURL, {
+            method: "POST",
+            headers: {
+              accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: jsonData,
+          });
+
+          const result = await response.json();
+
+          // Display the API response on the web page
+          const responseContainer =
+            document.getElementById("responseContainer");
+          var id = result["id"];
+          id = id.replace('"', "");
+          const url = `${BaseURL}?id=${id}`;
+          responseContainer.innerHTML = `<p>Visit this URL to view paste: <a href=${url}>${url}</a></p>`;
+        } catch (error) {
+          console.error("Error sending data to API:", error);
+          alert("Error sending data to API.");
+        }
+      }
+    </script>
+    <div style="margin-top: 260px;">    
+        <sergey-import src="footer">
+          <a href="dpro-comic.html#top" title="Back to top">
+          </sergey-import>
+          <sergey-import src="scripts" />
+        </div>
+  </body>
+</html>
+
