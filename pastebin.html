@@ -32,6 +32,9 @@
             border: none;
             cursor: pointer;
         }
+        .subtitle {
+          color: white;
+        }
 </style>
 
 <div class="project pastebin-body row slider-text align-items-center justify-content-center" style="padding-top: 80px;"></div>
@@ -50,6 +53,8 @@
     <p>
     <div id="responseContainer"></div>
     </p>
+    <h3 class="subtitle">your most recent pastes:</h3>
+    <div id="strings"></div>
 </div>
 </div>
 <div class="col-xs-3"></div>
@@ -106,12 +111,40 @@
           var id = result["id"];
           id = id.replace('"', "");
           const url = `${BaseURL}?id=${id}`;
-          responseContainer.innerHTML = `<p>Visit this URL to view paste: <a href=${url}>${url}</a></p>`;
+          responseContainer.innerHTML = `<p>Visit this URL to view most recent paste: <a href=${url}>${url}</a></p>`;
+          textInput.value = ""; //clearing textbox from its value
         } catch (error) {
           console.error("Error sending data to API:", error);
           alert("Error sending data to API.");
         }
       }
+
+      async function displayStrings() {
+            const pastebinAPI = "https://paste.socratic.dev/paste/api/pastes";
+
+            try {
+                const response = await fetch(pastebinAPI);
+                const data = await response.json();
+
+                // Get the div where we'll display the strings
+                const stringsDiv = document.getElementById('strings');
+
+                // Display each string
+                data.forEach(string => {
+                   const p = document.createElement('p');
+                    const url = `https://paste.socratic.dev/paste?id=${encodeURIComponent(string)}`;
+                    p.innerHTML = `<a href="${url}" target="_blank">${url}</a>`;
+                    stringsDiv.appendChild(p);
+                });
+            } catch (error) {
+                console.error("Error fetching strings from API:", error);
+                alert("Error fetching strings from API.");
+            }
+        }
+
+      window.onload = function() {
+            displayStrings();
+        };
     </script>
     <div style="margin-top: 260px;">    
         <sergey-import src="footer">
