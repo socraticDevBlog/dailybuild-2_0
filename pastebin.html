@@ -54,7 +54,7 @@
     <div id="responseContainer"></div>
     </p>
     <h3 class="subtitle">your most recent pastes:</h3>
-    <div id="strings"></div>
+    <div id="latestPasteUrls"></div>
 </div>
 </div>
 <div class="col-xs-3"></div>
@@ -119,22 +119,21 @@
         }
       }
 
-      async function displayStrings() {
+      async function displayPasteUrls() {
             const pastebinAPI = "https://paste.socratic.dev/paste/api/pastes";
 
             try {
                 const response = await fetch(pastebinAPI);
                 const data = await response.json();
 
-                // Get the div where we'll display the strings
-                const stringsDiv = document.getElementById('strings');
+                // Get the div where we'll display the latest Paste Urls
+                const urlsDiv = document.getElementById("latestPasteUrls");
 
-                // Display each string
-                data.forEach(string => {
+                // Display each Url
+                data.forEach(url => {
                    const p = document.createElement('p');
-                    const url = `https://paste.socratic.dev/paste?id=${encodeURIComponent(string)}`;
                     p.innerHTML = `<a href="${url}" target="_blank">${url}</a>`;
-                    stringsDiv.appendChild(p);
+                    urlsDiv.appendChild(p);
                 });
             } catch (error) {
                 console.error("Error fetching strings from API:", error);
@@ -143,7 +142,7 @@
         }
 
       window.onload = function() {
-            displayStrings();
+          displayPasteUrls();
         };
     </script>
     <div style="margin-top: 260px;">    
