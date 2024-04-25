@@ -1,3 +1,4 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6aaa8a29-6a18-4d61-8763-4af92d619750/deploy-status)](https://app.netlify.com/sites/flourishing-dodol-f6712e/deploys)
 ![https://img.shields.io/badge/good%20cause-we%20rock!-orange](https://img.shields.io/badge/good%20cause-we%20rock!-orange) ![https://img.shields.io/github/stars/socraticDevBlog/dailybuild-2_0?style=social](https://img.shields.io/github/stars/socraticDevBlog/dailybuild-2_0?style=social)
 ![https://img.shields.io/github/languages/code-size/socraticDevBlog/dailybuild-2_0](https://img.shields.io/github/languages/code-size/socraticDevBlog/dailybuild-2_0)
 ![https://img.shields.io/tokei/lines/github/socraticDevBlog/dailybuild-2_0](https://img.shields.io/tokei/lines/github/socraticDevBlog/dailybuild-2_0)
