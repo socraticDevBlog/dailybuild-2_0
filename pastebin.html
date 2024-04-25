@@ -115,7 +115,7 @@
           textInput.value = ""; //clearing textbox from its value
         } catch (error) {
           console.error("Error sending data to API:", error);
-          alert("Error sending data to API.");
+          alert("Error sending data to API. Check payload size: payload must be smaller than 5MB");
         }
       }
 
