@@ -117,10 +117,14 @@
       }
 
       async function displayPasteUrls() {
-            const pastebinAPI = "https://paste.socratic.dev/paste/api/pastes";
+            var pastebinAPIuri = "https://paste.socratic.dev/paste/api/pastes";
+            var clientId = getClientId();
+            if (clientId !== null) {
+              pastebinAPIuri = pastebinAPIuri + "?client_id=" + clientId;
+            }
 
             try {
-                const response = await fetch(pastebinAPI);
+                const response = await fetch(pastebinAPIuri);
                 const data = await response.json();
 
                 // Get the div where we'll display the latest Paste Urls
