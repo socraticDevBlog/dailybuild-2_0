@@ -43,7 +43,11 @@
 <div style="margin-left: 10em">
         <p>You can either upload some text pasted to the textbox area or a file</p>
     <textarea id="textInput" placeholder="Paste text here (keep empty if you woona upload a file)"></textarea>
-    <button class="green-button" onclick="uploadData()">Upload Data to Pastebin</button>
+    <button class="green-button" onclick="uploadData()">Upload Data to
+    Pastebin</button>
+    <p style="margin-top: 5em">
+    ... or upload a text file (kode?)  
+    <input type="file" id="fileInput" />
     </p>
 
     <p>
@@ -66,11 +70,21 @@
       async function uploadData() {
         const textInput = document.getElementById("textInput");
         const textData = textInput.value;
+        const fileInput = document.getElementById("fileInput"); 
+        const file = fileInput.files[0];
         const BaseURL = "https://paste.socratic.dev/paste";
 
         let content;
         if (textData) {
-          content = textData;
+          content = textData;}
+        else if (file) {
+        const reader = new FileReader();
+        content = await new Promise((resolve) => {
+          reader.onload = function (e) {
+            resolve(e.target.result);
+          };
+          reader.readAsText(file);
+        });
         } else {
           alert("Please enter text or select a file.");
           return;
