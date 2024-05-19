@@ -89,6 +89,9 @@
           alert("Please enter text or select a file.");
           return;
         }
+        
+        // base64 encode content to preserve formatting
+        content = btoa(content);
 
         // Create a JSON object with "content" as the key
         var data = {
