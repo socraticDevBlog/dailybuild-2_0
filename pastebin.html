@@ -66,6 +66,9 @@
         const clientId = queryParams.get("cid");
         return clientId !== null ? clientId: null;
       }
+      function utf8ToBase64(str) {
+        return btoa(unescape(encodeURIComponent(str)));
+      }
       
       async function uploadData() {
         const textInput = document.getElementById("textInput");
@@ -91,7 +94,7 @@
         }
         
         // base64 encode content to preserve formatting
-        content = btoa(content);
+        content = utf8ToBase64(content);
 
         // Create a JSON object with "content" as the key
         var data = {
