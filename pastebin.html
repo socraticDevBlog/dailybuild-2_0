@@ -41,25 +41,23 @@
 <div class="centered-div">
 <h1 style="color: orange">poor man cloud-native pastebin</h1>
 <div style="margin-left: 10em">
-        <p>You can either upload some text pasted to the textbox area or a file</p>
-    <textarea id="textInput" placeholder="Paste text here (keep empty if you woona upload a file)"></textarea>
+        <p>upload some text pasted to this textbox area 👇</p>
+    <textarea id="textInput" placeholder="Paste text here "></textarea>
     <button class="green-button" onclick="uploadData()">Upload Data to
     Pastebin</button>
-    <p style="margin-top: 5em">
-    ... or upload a text file (kode?)  
-    <input type="file" id="fileInput" />
     </p>
 
     <p>
     <div id="responseContainer"></div>
     </p>
-    <h3 class="subtitle">your most recent pastes:</h3>
+    <h3 class="subtitle">your most recent pastes (async loading...) 👇</h3>
     <div id="latestPasteUrls"></div>
 </div>
 </div>
 <div class="col-xs-3"></div>
 
     <script>
+      const BaseURL = "https://paste.socratic.dev/paste";
 
       function getClientId() {
         const queryParams = new URLSearchParams(window.location.search);
@@ -73,23 +71,12 @@
       async function uploadData() {
         const textInput = document.getElementById("textInput");
         const textData = textInput.value;
-        const fileInput = document.getElementById("fileInput"); 
-        const file = fileInput.files[0];
-        const BaseURL = "https://paste.socratic.dev/paste";
 
         let content;
         if (textData) {
-          content = textData;}
-        else if (file) {
-        const reader = new FileReader();
-        content = await new Promise((resolve) => {
-          reader.onload = function (e) {
-            resolve(e.target.result);
-          };
-          reader.readAsText(file);
-        });
+          content = textData;
         } else {
-          alert("Please enter text or select a file.");
+          alert("Please enter text to be saved");
           return;
         }
         
@@ -132,13 +119,15 @@
           textInput.value = ""; //clearing textbox from its value
         } catch (error) {
           console.error("Error sending data to API:", error);
-          alert("Error sending data to API. Check payload size: payload must be smaller than 5MB");
+          alert("Error sending data to API");
         }
       }
-
+      
       async function displayPasteUrls() {
-            var pastebinAPIuri = "https://paste.socratic.dev/paste/api/pastes";
-            var clientId = getClientId();
+        var pastebinAPIuri = `${BaseURL}/api/pastes`;
+        var clientId = getClientId();
+        console.log("muh client id");
+        console.log(clientId);
             if (clientId !== null) {
               pastebinAPIuri = pastebinAPIuri + "?client_id=" + clientId;
             }
