@@ -58,6 +58,7 @@
 
     <script>
       const BaseURL = "https://paste.socratic.dev/paste";
+      const TIMEOUT_MS = 10000
 
       function getClientId() {
         const queryParams = new URLSearchParams(window.location.search);
@@ -95,8 +96,6 @@
 
         // Convert the JSON object to a string
         const jsonData = JSON.stringify(data);
-
-        const TIMEOUT_MS = 10000
 
         // Send the data to the API using the fetch API
         try {
@@ -140,8 +139,21 @@
             }
 
             try {
-                const response = await fetch(pastebinAPIuri);
-                const data = await response.json();
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), TIMEOUT_MS);
+
+                const response = await fetch(pastebinAPIuri, {
+                  signal: controller.signal
+                });
+                clearTimeout(timeoutId);    
+                
+                // Setup timeout for JSON parsing
+                const jsonPromise = response.json();
+                const timeoutPromise = new Promise((_, reject) => 
+                  setTimeout(() => reject(new Error('JSON parsing timed out')), TIMEOUT_MS)
+                );
+                
+                const data = await Promise.race([jsonPromise, timeoutPromise]);
 
                 // Get the div where we'll display the latest Paste Urls
                 const urlsDiv = document.getElementById("latestPasteUrls");
