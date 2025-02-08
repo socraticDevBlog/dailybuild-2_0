@@ -18,14 +18,12 @@ function utf8ToBase64(str) {
 }
 
 async function submitText() {
-  console.log(`api endpoint: ${API_URL}`);
   const textInput = document.getElementById("pasteContent");
   const textData = textInput.value;
 
   let content;
   if (textData) {
     content = textData;
-    console.log(`content: {content}`);
   } else {
     alert("Please enter text to be saved");
     return;
@@ -119,11 +117,6 @@ async function displayPasteUrls() {
   }
 }
 
-async function paste(input) {
-  const text = await navigator.clipboard.readText();
-  input.value = text;
-}
-
 function toggleMode() {
   document.body.classList.toggle("dark-mode");
   const isDark = document.body.classList.contains("dark-mode");
@@ -154,4 +147,5 @@ window.onload = function () {
   } else {
     document.getElementById("toggleModeButton").innerHTML = "🌙";
   }
+  document.getElementById("pasteContent").focus();
 };
