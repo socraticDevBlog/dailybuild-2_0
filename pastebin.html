@@ -46,6 +46,29 @@
         transition: background 0.3s, color 0.3s;
       }
 
+      .paste-button {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        padding: 5px 10px;
+        font-size: 14px;
+        background-color: var(--button-bg);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out, background 0.3s;
+      }
+
+      .container:hover .paste-button {
+        opacity: 1;
+      }
+
+      .paste-button:hover {
+        background-color: var(--button-hover);
+      }
+
       /* Toggle Mode Button (Top-Right) */
       #toggleModeButton {
         position: absolute;
@@ -95,7 +118,7 @@
     <h1>Pastebin</h1>
     <textarea
       id="pasteContent"
-      placeholder="Paste your text here and press ENTER"
+      placeholder="Paste your text here..."
     ></textarea>
     <br />
     <button onclick="submitText()">Submit</button>

@@ -128,15 +128,6 @@ function toggleMode() {
   document.getElementById("toggleModeButton").innerHTML = isDark ? "☀️" : "🌙";
 }
 
-document
-  .getElementById("pasteContent")
-  .addEventListener("keydown", function (event) {
-    if (event.key === "Enter" && !event.shiftKey) {
-      event.preventDefault(); // Prevents adding a new line
-      submitText(); // Triggers submit
-    }
-  });
-
 window.onload = function () {
   displayPasteUrls();
   const darkModeSetting = localStorage.getItem("darkMode");
