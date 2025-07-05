@@ -1,0 +1,227 @@
+<!-- author: bernie
+website: https://vezquex.github.io/clock/ -->
+
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" />
+<meta name="theme-color" content="#000000" />
+<link id="favicon" rel="shortcut icon" />
+<title>Clock</title>
+<style>
+  :root {
+    color-scheme: dark;
+  }
+  body {
+    background: #000;
+    color: #bebebe;
+    font-family: "Roboto Mono", "Consolas", monospace;
+    font-size: min(15vh, 7vw);
+    line-height: 1.5;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+  }
+  p {
+    margin: 0;
+    overflow: hidden;
+  }
+  .copy {
+    cursor: copy;
+    user-select: none;
+  }
+  .seconds-wrap {
+    flex-grow: 1;
+    font-size: 0.5em;
+    line-height: 2.75;
+    height: 2em;
+  }
+  .time {
+    font-size: 3.5em;
+    line-height: 1;
+    display: flex;
+  }
+  [day="0"] .day-bg {
+    background: #202000;
+  }
+  [day="0"] .day-color {
+    color: #e0e000;
+  }
+  [day="1"] .day-bg {
+    background: #201820;
+  }
+  [day="1"] .day-color {
+    color: #9060ff;
+  }
+  [day="2"] .day-bg {
+    background: #200000;
+  }
+  [day="2"] .day-color {
+    color: #c02000;
+  }
+  [day="3"] .day-bg {
+    background: #001020;
+  }
+  [day="3"] .day-color {
+    color: #3060c0;
+  }
+  [day="4"] .day-bg {
+    background: #001000;
+  }
+  [day="4"] .day-color {
+    color: #30c030;
+  }
+  [day="5"] .day-bg {
+    background: #201a08;
+  }
+  [day="5"] .day-color {
+    color: #e8d880;
+  }
+  [day="6"] .day-bg {
+    background: #180900;
+  }
+  [day="6"] .day-color {
+    color: #ffa040;
+  }
+</style>
+<div class="clock">
+  <p>
+    <span class="numdate copy"></span>
+    <span class="weekday_ja copy day-color"></span>
+  </p>
+  <p class="time copy day-color">
+    <span class="hours">&nbsp;&nbsp;</span><span class="sep">:</span
+    ><span class="minutes">&nbsp;&nbsp;</span
+    ><span class="seconds-wrap" style="cursor: zoom-out"
+      ><span><span class="sep">:</span><span class="seconds"></span></span
+    ></span>
+  </p>
+  <p class="date copy"></p>
+</div>
+<canvas id="icon-render"></canvas>
+<script>
+  const eid = document.getElementById.bind(document);
+  function clock_widget() {
+    const clock = {
+      el: document.querySelector(".clock"),
+      sec: true,
+    };
+
+    ["date", "hours", "minutes", "numdate", "seconds", "weekday_ja"].forEach(
+      function (component) {
+        clock[component] = clock.el.querySelector("." + component);
+      }
+    );
+
+    const locale = "en-us";
+
+    const display = function (t) {
+      const seconds_fmt = pad2(t.getSeconds());
+      clock.seconds.innerHTML = seconds_fmt;
+      const minutes = t.getMinutes();
+      const minutes_fmt = (clock.minutes.innerHTML = pad2(minutes));
+      const hours = t.getHours();
+      const hours_fmt = (clock.hours.innerHTML = pad2(hours));
+      clock.numdate.innerHTML = numdate_text(t);
+      clock.weekday_ja.innerHTML = t.toLocaleString("ja-JP", {
+        weekday: "short",
+      });
+      clock.el.setAttribute("day", t.getDay());
+      clock.date.innerHTML = date_text(t);
+      document.title = `${time_text(t)} ${t.toLocaleString(locale, {
+        weekday: "short",
+      })}, ${t.getDate()} ${t.toLocaleString(locale, {
+        month: "short",
+      })} ${t.getFullYear()}`;
+      const emoji = String.fromCodePoint(
+        (hours % 12 || 12) + 0x1f54f + (minutes < 30 ? 0 : 12)
+      );
+      ic.fillText(emoji, icon_center, icon_center + 2.5);
+      favicon.href = icon.toDataURL("image/png");
+    };
+
+    function date_text(t) {
+      return `${t.toLocaleString(locale, {
+        weekday: "long",
+      })}, ${t.toLocaleString(locale, { month: "long" })} ${t.getDate()}`;
+    }
+    function numdate_text(t) {
+      return (
+        t.getFullYear() + "-" + pad2(t.getMonth() + 1) + "-" + pad2(t.getDate())
+      );
+    }
+    function time_text(t) {
+      return `${pad2(t.getHours())}:${pad2(t.getMinutes())}${
+        clock.sec ? ":" + pad2(t.getSeconds()) : ""
+      }`;
+    }
+
+    const synchronize = function () {
+      let t = new Date();
+      // t = new Date(Date.now() + 1*864e5)
+      clock.t = t;
+      display(t);
+      window.setTimeout(synchronize, 1000 - (t % 1000));
+    };
+
+    synchronize();
+
+    clock.numdate.addEventListener(
+      "click",
+      copy_text.bind(null, () => numdate_text(clock.t))
+    );
+    clock.el.querySelector(".time").addEventListener(
+      "click",
+      copy_text.bind(null, () => time_text(clock.t))
+    );
+    clock.date.addEventListener(
+      "click",
+      copy_text.bind(null, () => date_text(clock.t))
+    );
+    clock.weekday_ja.addEventListener("click", copy_text.bind(null, null));
+    clock.el
+      .querySelector(".seconds-wrap")
+      .addEventListener("click", toggle_sec);
+
+    function toggle_sec(ev) {
+      clock.sec = !clock.sec;
+      const sec_style = ev.currentTarget.style;
+      sec_style.cursor = clock.sec ? "zoom-out" : "zoom-in";
+      ev.currentTarget.firstElementChild.style.visibility = clock.sec
+        ? "visible"
+        : "hidden";
+      ev.stopPropagation();
+    }
+  }
+
+  function copy_text(get_text, ev) {
+    navigator.clipboard.writeText(
+      get_text ? get_text() : ev.currentTarget.innerText
+    );
+    const target = ev.currentTarget;
+    target.classList.add("day-bg");
+    window.setTimeout(() => target.classList.remove("day-bg"), 150);
+  }
+
+  // icon
+  const icon_size = 32;
+  const icon_center = icon_size / 2;
+  const favicon = eid("favicon");
+  const icon = eid("icon-render");
+  icon.style.display = "none";
+  const ic = icon.getContext("2d");
+  icon.style.width = icon.style.height = icon_size + "px";
+  const scale = window.devicePixelRatio;
+  icon.height = icon.width = Math.floor(icon_size * scale);
+  ic.scale(scale, scale);
+  ic.font = "28px sans-serif";
+  ic.textAlign = "center";
+  ic.textBaseline = "middle";
+
+  clock_widget();
+
+  function pad2(n) {
+    return n < 10 ? "0" + n : n;
+  }
+</script>
