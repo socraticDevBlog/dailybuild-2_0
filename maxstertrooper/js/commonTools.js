@@ -42,7 +42,7 @@ function clearScreen(canvas) {
   context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-function scaleScreen(canvas, width, height, smooth=true) {
+function scaleScreen(canvas, context, width, height, smooth=true) {
   var scale = window.devicePixelRatio || 1;
   var container = canvas.parentNode.getBoundingClientRect();
   var zoom = Math.min(

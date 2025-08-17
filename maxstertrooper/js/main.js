@@ -5,7 +5,7 @@ var gameRunner = new Runner(canvas, context, /*width=*/ 300, /*height=*/ 150);
 
 // scale canvas
 //
-scaleScreen(canvas, gameRunner.width, gameRunner.height, /*smooth=*/ true);
+scaleScreen(canvas, context, gameRunner.width, gameRunner.height, /*smooth=*/ true);
 
 // display main menu
 //
