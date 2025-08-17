@@ -12,19 +12,22 @@
 }
 
 .customMain {
+  background-color: #91967f;
   position: absolute;
   left: 0;
   width: 100%;
   top: 100px;
   overflow: auto;
+
+  /*   100vh == screen total height ; 160px == header.height + footer.height */
+  height: calc(100vh - 160px);
 }
 
 .customCanvas {
   background-color: black;
-  width: 100%;
-
-  /*   100vh == screen total height ; 160px == header.height + footer.height */
-  height: calc(100vh - 160px);
+  display: block;
+  image-rendering: pixelated;
+  margin: auto;
 }
 
 .customFooter {

@@ -41,3 +41,20 @@ function clearScreen(canvas) {
   var context = canvas.getContext("2d");
   context.clearRect(0, 0, canvas.width, canvas.height);
 }
+
+function scaleScreen(canvas, context, width, height, smooth=true) {
+  var scale = window.devicePixelRatio || 1;
+  var container = canvas.parentNode.getBoundingClientRect();
+  var zoom = Math.min(
+    (container.height / height),
+    (container.width / width),
+  );
+  var zoomScale = zoom * scale;
+  canvas.style.height = `${height * zoom}px`;
+  canvas.style.width = `${width * zoom}px`;
+  if(smooth){
+    canvas.height = height * zoomScale;
+    canvas.width = width * zoomScale;
+    context.scale(zoomScale, zoomScale);
+  }
+}

@@ -1,7 +1,11 @@
 var canvas = document.getElementById("mainCanvas");
 var context = canvas.getContext("2d");
 
-var gameRunner = new Runner(canvas, context);
+var gameRunner = new Runner(canvas, context, /*width=*/ 300, /*height=*/ 150);
+
+// scale canvas
+//
+scaleScreen(canvas, context, gameRunner.width, gameRunner.height, /*smooth=*/ true);
 
 // display main menu
 //
@@ -14,11 +18,11 @@ function checkKey(e) {
 
   switch (event.code) {
     case "ArrowRight":
-      gameRunner.moveCannonRight(gameRunner, canvas.width);
+      gameRunner.moveCannonRight(gameRunner, gameRunner.width);
       break;
 
     case "ArrowLeft":
-      gameRunner.moveCannonLeft(gameRunner, canvas.width);
+      gameRunner.moveCannonLeft(gameRunner, gameRunner.width);
       break;
 
     case "ArrowUp":

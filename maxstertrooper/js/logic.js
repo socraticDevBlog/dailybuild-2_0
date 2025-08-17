@@ -1,12 +1,14 @@
 const WINNING_TRESHOLD = 75;
 
 class Runner {
-  constructor(canvas, context) {
+  constructor(canvas, context, width, height) {
     this.canvas = canvas;
     this.context = context;
+    this.height = height;
+    this.width = width;
     this.flyers = {};
     this.bullets = {};
-    this.cannon = new Cannon(canvas.width, canvas.height);
+    this.cannon = new Cannon(this.width, this.height);
     this.display = new PointsDisplay();
     this.points = 15;
     this.loopingInverval = null;
@@ -194,7 +196,7 @@ class Runner {
         }
       }
     } else {
-      if (flyer.x < self.canvas.width) {
+      if (flyer.x < self.width) {
         flyer.moveRight();
       } else {
         flyer.moveLeft();
