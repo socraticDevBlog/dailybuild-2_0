@@ -11,6 +11,9 @@
     "start": "sergey",
     "dev": "sergey --watch"
   },
+  "engines": {
+    "node": ">=20"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://gitlab.com/socraticdev/hashtag-dailybuild.git"
