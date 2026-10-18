@@ -74,7 +74,7 @@ function load() {
   );
   let winnipeg = getDate(
     luxon.DateTime.now().setZone("America/Winnipeg"),
-    chiOffset
+    winnipegOffset
   );
   let denver = getDate(
     luxon.DateTime.now().setZone("America/Denver"),
