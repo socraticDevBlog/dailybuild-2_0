@@ -44,12 +44,14 @@ const parisOffset = 1.0;
 const bulgOffset = 2.0;
 const turkOffset = 3.0;
 const chiOffset = -6.0;
+const winnipegOffset = -5.0;
 const denverOffset = -7.0;
 const sfOffset = -8.0;
 
 const nytimeCell = document.getElementById("ny-time");
 const paristimeCell = document.getElementById("paris-time");
 const chiTimeCell = document.getElementById("chicago-time");
+const winnipegTimeCell = document.getElementById("winnipeg-time");
 const denverTimeCell = document.getElementById("denver-time");
 const sftimeCell = document.getElementById("pacific-time");
 const beatimeCell = document.getElementById("beat-time");
@@ -70,6 +72,10 @@ function load() {
     luxon.DateTime.now().setZone("America/Chicago"),
     chiOffset
   );
+  let winnipeg = getDate(
+    luxon.DateTime.now().setZone("America/Winnipeg"),
+    chiOffset
+  );
   let denver = getDate(
     luxon.DateTime.now().setZone("America/Denver"),
     denverOffset
@@ -88,6 +94,7 @@ function load() {
   nytimeCell.innerText = printTime(ny);
   paristimeCell.innerText = printTime(paris);
   chiTimeCell.innerText = printTime(chicago);
+  winnipegTimeCell.innerText = printTime(winnipeg);
   denverTimeCell.innerText = printTime(denver);
   bulgariaTimeCell.innerText = printTime(bulgaria);
   turkeyTimeCell.innerText = printTime(turkey);
