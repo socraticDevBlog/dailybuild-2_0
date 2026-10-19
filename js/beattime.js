@@ -17,13 +17,6 @@ function getBeats(dateObj) {
   );
 }
 
-const nyOffset = -5.0;
-const parisOffset = 1.0;
-const bulgOffset = 2.0;
-const turkOffset = 3.0;
-const chiOffset = -6.0;
-const denverOffset = -7.0;
-const sfOffset = -8.0;
 
 const nytimeCell = document.getElementById("ny-time");
 const paristimeCell = document.getElementById("paris-time");
